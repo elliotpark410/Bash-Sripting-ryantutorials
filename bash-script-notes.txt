@@ -1,0 +1,180 @@
+-bash or shell is a command line tool that is used to efficiently mainpulate files and directories e.g. Git Bash 
+
+-a script tells the computer what it should do
+
+-bash scripts have an extension of .sh
+
+-for bash to read variables we place its name (preceded by a $ sign) 
+
+-to run script, be in cd and type "./script-name"
+
+-variables: 
+$0 - The name of the Bash script.
+$1 - $9 - The first 9 arguments to the Bash script. (As mentioned above.)
+$# - How many arguments were passed to the Bash script.
+$@ - All the arguments supplied to the Bash script.
+$? - The exit status of the most recently run process.
+$$ - The process ID of the current script.
+$USER - The username of the user running the script.
+$HOSTNAME - The hostname of the machine the script is running on.
+$SECONDS - The number of seconds since the script was started.
+$RANDOM - Returns a different random number each time is it referred to.
+$LINENO - Returns the current line number in the Bash script.
+
+
+-setting a variable: variable=value
+-note there is no space on either side of the equals ( = ) sign. We also leave off the $ sign from the beginning of the variable name when setting it
+
+-for variable values, Single quotes will treat every character literally and Double quotes will allow you to do substitution (that is include variables within the setting of the value)
+
+-Command substitution allows us to take the output of a command or program (what would normally be printed to the screen) and save it as the value of a variable. To do this we place it within brackets, preceded by a $ sign
+-e.g. in terminal, 
+--$ myvar=$( ls /etc | wc -l )
+--$ echo There are $myvar entries in the directory /etc
+--$ output: there are 26 entries in the directory /etc
+
+
+-asking user for input then we use a command called "read"
+
+-cat (short for "concatenate") command allows us to view contents of a file in terminal
+
+
+-"let" is a builtin function that allows simple arithmetic
+-"expr" is similar to "let" but the result won't be saved to a variable and it prints the answer
+-$(( expression )) allows us to save the output to a variable
+
+
+-if statement syntax: 
+if [ <some test> ]
+then
+<commands>
+fi
+
+-anything between then and fi will be executed only if the test between the square brackets is true
+-Potential operators in the if [] statement  
+
+#   Operator	            Description
+# ! EXPRESSION	          The EXPRESSION is false.
+# -n STRING	              The length of STRING is greater than zero.
+# -z STRING	              The lengh of STRING is zero (ie it is empty).
+# STRING1 = STRING2	      STRING1 is equal to STRING2
+# STRING1 != STRING2	    STRING1 is not equal to STRING2
+# INTEGER1 -eq INTEGER2	  INTEGER1 is numerically equal to INTEGER2
+# INTEGER1 -gt INTEGER2	  INTEGER1 is numerically greater than INTEGER2
+# INTEGER1 -lt INTEGER2	  INTEGER1 is numerically less than INTEGER2
+# -d FILE	                FILE exists and is a directory.
+# -e FILE	                FILE exists.
+# -r FILE	                FILE exists and the read permission is granted.
+# -s FILE	                FILE exists and it's size is greater than zero (ie. it is not empty).
+# -w FILE	                FILE exists and the write permission is granted.
+# -x FILE	                FILE exists and the execute permission is granted.
+
+
+- -eq is different from =
+- [ 001 = 1 ] will return false as = does a string comparison (ie. character for character the same) whereas -eq does a numerical comparison meaning [ 001 -eq 1 ] will return true
+- When we refer to FILE above we are actually meaning a path. Remember that a path may be absolute or relative and may refer to a file or a directory
+
+
+-$? prints the exit status of the last command
+-0 means true and 1 = false
+
+-Case statements: Choose a set of commands to execute depending on a string matching a particular pattern.
+
+-Case Statement syntax:
+   case <variable> in
+   <pattern 1>)
+   <commands>
+   ;;
+   <pattern 2>)
+   <other commands>
+   ;;
+   esac
+
+
+-while loops: while an expression is true, keep executing these lines of code
+
+-while loop syntax:
+   while [ <some test> ]
+   do
+   <commands>
+   done
+
+
+-until loops: until loop is similar to the while loop. the difference is that it will execute the commands within it until the test becomes true
+
+-until loop syntax: 
+   until [ <some test> ]
+   do
+   <commands>
+   done
+
+
+
+-for loops: for each items in a given list, perform the given set of commands
+
+-for loop syntax: 
+   for var in <list>
+   do
+   <commands>
+   done
+
+
+-you can use break and continue in for loops
+-break statement tells Bash to leave the loop straight away
+-continue statement tells Bash to stop running through this iteration of the loop and begin the next iteration
+
+
+-select mechanism allows you to create a simple menu system. when invoked it will present the list on the screen with a number before each item
+
+-select synax: 
+   select var in <list>
+   do
+   <commands>
+   done
+
+
+while do done
+Perform a set of commands while a test is true.
+
+until do done
+Perform a set of commands until a test is true.
+
+for do done
+Perform a set of commands for each item in a list.
+
+break
+Exit the currently running loop.
+
+continue
+Stop this iteration of the loop and begin the next iteration.
+
+select do done
+Display a simple menu system for selecting items from a list.
+
+
+Function syntax :
+  -you do not put arguments in parantheses
+
+   function_name () {
+   <commands>
+   }
+
+or you can write a function like this 
+
+   function function_name {
+   <commands>
+   }
+
+
+Functions Summary: 
+function <name> or <name> ()
+Create a function called name.
+
+return <value>
+Exit the function with a return status of value.
+
+local <name>=<value>
+Create a local variable within a function.
+
+command <command>
+Run the command with that name as opposed to the function with the same name.
